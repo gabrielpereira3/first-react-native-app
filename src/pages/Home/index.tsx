@@ -13,11 +13,16 @@ export const Home = () => {
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
-        <Text style={styles.title}>Hello World!</Text>
-        <TextInput style={styles.input} />
+        <Text style={styles.title}>Lista de tarefas</Text>
+        <TextInput
+          placeholderTextColor="#999"
+          placeholder="Nova tarefa..."
+          style={styles.input}
+        />
         <TouchableOpacity activeOpacity={0.7} style={styles.button}>
           <Text style={styles.buttonText}>Adicionar</Text>
         </TouchableOpacity>
+        <Text style={styles.titleTasks}>Minhas tarefas</Text>
       </View>
     </SafeAreaView>
   );
@@ -36,8 +41,14 @@ const styles = StyleSheet.create({
   },
   title: {
     color: '#f1f1f1',
-    fontSize: 40,
+    fontSize: 32,
     fontWeight: 'bold',
+  },
+  titleTasks: {
+    color: '#f1f1f1',
+    fontSize: 32,
+    fontWeight: 'bold',
+    marginVertical: 50,
   },
   input: {
     backgroundColor: '#29292a',
