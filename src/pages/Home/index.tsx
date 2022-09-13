@@ -10,11 +10,14 @@ import {
 } from 'react-native';
 
 export const Home = () => {
+  const [newTask, setNewTask] = React.useState('');
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
         <Text style={styles.title}>Lista de tarefas</Text>
         <TextInput
+          onChangeText={setNewTask}
           placeholderTextColor="#999"
           placeholder="Nova tarefa..."
           style={styles.input}
@@ -23,6 +26,7 @@ export const Home = () => {
           <Text style={styles.buttonText}>Adicionar</Text>
         </TouchableOpacity>
         <Text style={styles.titleTasks}>Minhas tarefas</Text>
+        <Text>{newTask}</Text>
       </View>
     </SafeAreaView>
   );
