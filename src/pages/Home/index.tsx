@@ -9,24 +9,50 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
+interface Task {
+  id: string;
+  title: string;
+}
+
 export const Home = () => {
   const [newTask, setNewTask] = React.useState('');
+  const [tasks, setTasks] = React.useState<Task[]>([]);
+
+  const handleNewTask = () => {
+    const data = {
+      id: String(new Date().getTime()),
+      title: newTask ? newTask : 'Task empty',
+    };
+
+    setTasks([...tasks, data]);
+  };
 
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
         <Text style={styles.title}>Lista de tarefas</Text>
+
         <TextInput
           onChangeText={setNewTask}
           placeholderTextColor="#999"
           placeholder="Nova tarefa..."
           style={styles.input}
         />
-        <TouchableOpacity activeOpacity={0.7} style={styles.button}>
+
+        <TouchableOpacity
+          onPress={handleNewTask}
+          activeOpacity={0.7}
+          style={styles.button}>
           <Text style={styles.buttonText}>Adicionar</Text>
         </TouchableOpacity>
+
         <Text style={styles.titleTasks}>Minhas tarefas</Text>
-        <Text>{newTask}</Text>
+
+        {tasks.map(task => (
+          <TouchableOpacity key={task.id} style={styles.buttonTask}>
+            <Text style={styles.titleTask}>{task.title}</Text>
+          </TouchableOpacity>
+        ))}
       </View>
     </SafeAreaView>
   );
@@ -72,6 +98,18 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#121214',
     fontSize: 18,
+    fontWeight: 'bold',
+  },
+  buttonTask: {
+    backgroundColor: '#29292e',
+    padding: 10,
+    marginTop: 10,
+    borderRadius: 50,
+    alignItems: 'center',
+  },
+  titleTask: {
+    color: '#f1f1f1',
+    fontSize: 20,
     fontWeight: 'bold',
   },
 });
