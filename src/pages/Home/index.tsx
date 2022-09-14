@@ -37,6 +37,7 @@ export const Home = () => {
         />
 
         <TouchableOpacity
+          testID="addButton"
           onPress={handleNewTask}
           activeOpacity={0.7}
           style={styles.button}>
