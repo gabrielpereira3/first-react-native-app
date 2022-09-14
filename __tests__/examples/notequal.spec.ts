@@ -6,7 +6,7 @@ describe('Not method', () => {
 
 describe('Match - expressoes regulares', () => {
   it('uso basico - toMatch', () => {
-    expect(1).toMatch(/\w+/);
+    expect('teste').toMatch(/\w+/);
   });
 });
 
